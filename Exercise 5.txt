@@ -1,0 +1,126 @@
+#Sample.txt
+
+Hello my name is Sanket Gosavi
+I am currenty studying Artificial Intelligence at Cdac Noida.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+#Q1. Write a Python program to read an entire text file.
+
+F = open("Sample_text.txt",mode='r')
+print(F.read())
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+#mymod.py
+
+def countLines(name):
+    file = open('Sample_text.txt',mode='r')
+    return len(file.readlines())
+
+def countChar(name):
+    return len(open('Sample_text.txt',mode='r').read())
+
+def test(name):
+    return countLines(name), countChar(name)
+
+
+'''Q2.   Write a program that counts lines and characters in a file.
+With your favorite text editor, code a Python module called mymod.py,
+which exports three top-level names:'''
+
+import mymod
+print('No. of lines and characters in the file : ',mymod.test('mymod.py'))
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+'''Q3. Test your mymod module from Exercise 2 interactively,
+by using from to load the exports directly, 
+first by name, then using the from* variant to fetch everything'''
+
+from mymod import *
+print(countChar('mymod.py'))
+print(countLines('mymod.py'))
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+'''Q4. Now, add a line in your mymod module that calls the 
+test function automatically only when the module is run as a script, 
+not when it is imported The line you add will probably test the
+value of __name__ for the string &quot;__main__&quot;, 
+as shown in this unit. Try running yourmodule from the system command line; 
+then, import the module and test its functionsinteractively.'''
+
+def countLines(name):
+    file = open('Sample_text.txt',mode='r')
+    return len(file.readlines())
+
+def countChar(name):
+    return len(open('Sample_text.txt',mode='r').read())
+
+def test(name):
+    return countLines(name), countChar(name)
+
+if __name__ == '__main__':
+    print ('No. of lines and characters in the file : ',test('mymod.py'))
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+#myclient.py
+
+from mymod import countLines
+from mymod import countChar
+print('No. of lines in the file : ',countLines('mymod.py'),
+      '\nNo. of characters in the file : ',countChar('mymod.py'))
+
+
+'''Q5.    Write a second module, myclient.py, which imports mymod and tests its functions;
+run myclient from the system command line. If myclient uses from to fetch from mymod,
+will mymod’s functions be accessible from the top level of myclient? What if it imports
+with import instead? Try coding both variations in myclient and test interactively, by
+importing myclient .'''
+
+from mymod import countLines
+from mymod import countChar
+print('No. of lines in the file : ',countLines('mymod.py'),
+      '\nNo. of characters in the file : ',countChar('mymod.py'))
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+'''Q6.   Package imports. Finally, import your file from a package. Create a subdirectory
+called mypkg nested in a directory on your module import search path, move
+the mymod.py module file you created in exercises 2 or 4 into the new directory, and try to
+import it with a package import of the form: import mypkg.mymod.'''
+
+
+import mypkg.mymod
+
+# Call the countLines function
+print('No. of lines in the file : ', mypkg.mymod.countLines('mymod.py'))
+
+# Call the countChar function
+print('No. of characters in the file : ', mypkg.mymod.countChar('mymod.py'))
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+'''Q7.   Experiment with module reloads: perform the tests in the changer.py example, changing the
+called function’s message and/or behavior repeatedly, without stopping the Python
+interpreter. Depending on your system, you might be able to edit changer in another window.'''
+
+import importlib
+import changer
+
+while True:
+    print(changer.message())
+    input("Press Enter to reload changer module...")
+    importlib.reload(changer)
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
